@@ -1,0 +1,5 @@
+package com.example.erand.erand_client
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity : FlutterActivity()

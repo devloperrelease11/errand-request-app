@@ -1,0 +1,86 @@
+Flutter Full Stack Developer Intern
+Technical Assessment: Errand Request App
+1. Objective
+Build a working full stack application with a Flutter mobile client and a backend in either NestJS or
+FastAPI. People post errands they need done, and other people accept and complete them. The
+assessment evaluates code quality, code security, design thinking and problem solving. Build it as you
+would production work, not as a demo.
+2. Roles
+• Requester: creates errands and tracks them.
+• Runner: accepts open errands and completes them.
+A user chooses one role at registration. One account has exactly one role.
+3. Functional Requirements
+3.1 Authentication
+• Register with name, email, password and role. Log in and log out.
+• The session persists across app restarts.
+• All endpoints other than register and login require authentication.
+3.2 Requester
+• Create an errand with: title, description, pickup address and drop-off address (all text fields).
+• View a list of their own errands with current status, and open an errand to see its details.
+• Cancel an errand while it is still Open.
+3.3 Runner
+• View a list of Open errands, newest first, and open one to see its details.
+• Accept an Open errand.
+• View their own accepted errands and move them through the lifecycle below.
+3.4 Errand Lifecycle
+Status Changed by Allowed only from
+Open System Set on creation
+Accepted Runner Open
+In Progress The assigned Runner Accepted
+Completed The assigned Runner In Progress
+Cancelled The Requester who owns it Open
+3.5 Business Rules
+1. An errand can be accepted by exactly one Runner. If two Runners accept the same errand at the
+same time, exactly one succeeds and the other receives a clear error.
+2. A Runner can hold only one active errand (Accepted or In Progress) at a time.
+Page 1 of 3
+3. Status cannot skip a step or move backwards. Completed and Cancelled are final.
+4. A Requester can see and modify only their own errands. A Runner can see Open errands and the
+errands assigned to them, and nothing else.
+5. Only Runners can accept errands. Only Requesters can create or cancel them.
+Screens must show the latest status. Pull-to-refresh or polling is acceptable.
+4. Technical Requirements
+4.1 Client
+• Flutter (current stable) with Dart. Choose your own state management approach.
+• Handle loading, empty and error states on every screen that fetches data.
+• Validate form input before submission.
+• Keep API base URLs and configuration out of source code.
+4.2 Backend
+• Use either NestJS (TypeScript) or FastAPI (Python). Choose one.
+• Use a persistent database of your choice (PostgreSQL is preferred).
+• A REST API (or equivalent) that enforces all rules in section 3.5.
+• Validation and authorization must be enforced on the server. Client-side checks do not count.
+4.3 Security
+• Store passwords using a proper hashing algorithm such as bcrypt or Argon2.
+• Use token-based authentication with an expiry.
+• Check authorization on every endpoint, including access to individual errands.
+• Validate all input. Use parameterized queries or an ORM.
+• Do not commit secrets. Provide a .env.example file instead.
+• Never return password hashes or other internal fields in API responses.
+4.4 Testing
+• Write automated backend tests for the rules in section 3.5, including the lifecycle transitions and
+the single-acceptance rule.
+• Client tests are not required.
+5. Out of Scope
+Do not build any of the following. Extra features earn no credit and count against scope discipline.
+• Payments, pricing or budgets
+• Maps, GPS or geolocation
+• Push notifications
+• Chat or messaging
+• Ratings or reviews
+• Admin panel
+• Image uploads
+• Social login
+• Web or desktop targets
+Page 2 of 3
+6. Deliverables
+Submit a GitHub repository (public, or private and shared with the reviewer) containing:
+• Source code, with the Flutter app and the backend in clearly separated folders.
+• README.md, covering: prerequisites; setup and run steps for both client and backend;
+environment variables; an API summary; the architecture and key design decisions, including why
+you chose your framework, database and state management; assumptions you made; known
+limitations.
+• Sample data, so the reviewer can log in as one Requester and one Runner immediately (a seed
+script or documented accounts).
+• Commit history that shows how the work progressed. A single bulk commit is not acceptable.
+• .env.example listing every required variable without real values

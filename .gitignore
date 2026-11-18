@@ -1,0 +1,23 @@
+# Python / backend
+backend/.venv/
+**/__pycache__/
+*.py[cod]
+backend/*.db
+backend/*.db-wal
+backend/*.db-shm
+.pytest_cache/
+
+# Secrets and local configuration
+.env
+backend/.env
+client/config.json
+
+# Flutter / IDE
+client/web/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+.idea/
+*.iml
